@@ -2,10 +2,12 @@
 #include <vector>
 #include "Equipo.h"
 using namespace std;
+
 int main() {
     // Crear el vector de equipos
     std::vector<Equipo> equipos;
     
+    // Agregar equipos al vector
     equipos.push_back(Equipo("MrSavage", "100 Thieves", 20, "Norway", 999));
     equipos.push_back(Equipo("Sphinx 7", "Elite", 20, "Lebanon", 318));
     equipos.push_back(Equipo("Kwanti", "EXD", 20, "United States of America", 312));
@@ -53,21 +55,52 @@ int main() {
     equipos.push_back(Equipo("Threats", "ManCity", 20, "United States of America", 48));
     equipos.push_back(Equipo("Seeyun", "Null", 18, "United States of America", 153));
 
-    // Ordenar los equipos por puntaje (de mayor a menor)
-    ordenar_equipos(equipos);
+    int opcion;
+    do {
+        // Mostrar el menú
+        cout << "\nMenu:\n";
+        cout << "1. Imprimir equipos\n";
+        cout << "2. Ordenar equipos por puntaje (de mayor a menor)\n";
+        cout << "3. Buscar equipo por puntaje\n";
+        cout << "4. Salir\n";
+        cout << "Seleccione una opción: ";
+        cin >> opcion;
 
-    // Mostrar los equipos despu�s de ordenar
-    std::cout << "\nEquipos despu�s de ordenar por puntaje:\n";
-    mostrar_equipos(equipos);
-    
-    int puntaje_a_buscar;
-    cout<<"Digite el valor de puntaje que quiere buscar: "<<endl;
-    cin>>puntaje_a_buscar;
-    busqueda_binaria_puntaje(equipos, puntaje_a_buscar);  // Buscar por puntaje
+        switch(opcion) {
+            case 1:
+                // Imprimir equipos
+                cout << "\nLista de equipos:\n";
+                mostrar_equipos(equipos);
+                break;
+
+            case 2:
+                // Ordenar equipos por puntaje
+                ordenar_equipos(equipos);
+                cout << "\nEquipos ordenados por puntaje:\n";
+                mostrar_equipos(equipos);
+                break;
+
+            case 3: {
+                // Buscar equipo por puntaje
+                int puntaje_a_buscar;
+                cout << "Ingrese el puntaje a buscar: ";
+                cin >> puntaje_a_buscar;
+                busqueda_binaria_puntaje(equipos, puntaje_a_buscar);
+                break;
+            }
+
+            case 4:
+                cout << "Saliendo del programa...\n";
+                break;
+
+            default:
+                cout << "Opción no válida. Intente nuevamente.\n";
+                break;
+        }
+    } while (opcion != 4);
 
     return 0;
 }
-
 
 
 
