@@ -8,7 +8,7 @@ Este proyecto gestiona una lista de equipos de eSports, permitiendo ordenar los 
    Se añaden equipos al sistema con la información del jugador, nombre del equipo, edad, región y puntaje.
 
 2. **Ordenar Equipos**:
-   El programa ordena los equipos por puntaje de mayor a menor utilizando el algoritmo de Selection Sort.
+   El programa ordena los equipos por puntaje de mayor a menor utilizando el algoritmo de Quick Sort.
 
 3. **Buscar Equipos**:
    Permite buscar un equipo por su puntaje utilizando la búsqueda binaria.
@@ -48,14 +48,14 @@ La clase `Equipo` incluye:
 ### Funciones Principales
 
 - **`mostrar_equipos`**: Muestra la información de todos los equipos.
-- **`ordenar_equipos`**: Ordena los equipos por puntaje utilizando Selection Sort.
+- **`ordenar_equipos`**: Ordena los equipos por puntaje utilizando Quick Sort.
 - **`busqueda_binaria_puntaje`**: Busca un equipo por su puntaje usando búsqueda binaria.
 
 ## Algoritmos Utilizados
 
 ### Algoritmo de Ordenamiento
 
-Se utiliza el algoritmo de Selection Sort para ordenar los equipos por puntaje de mayor a menor. Este algoritmo es eficiente para listas de tamaño moderado.
+Se utiliza el algoritmo de Quick Sort para ordenar los equipos por puntaje de mayor a menor. Quick Sort es eficiente incluso con listas grandes y tiene un rendimiento óptimo en la mayoría de los casos.
 
 ### Búsqueda Binaria
 
@@ -82,7 +82,10 @@ Los casos de prueba verifican las siguientes funcionalidades:
 
 ### Ordenamiento
 
-- **Selection Sort**: O(n^2) en el peor caso debido a los dos bucles anidados.
+- **Quick Sort**:
+  - **Mejor caso**: O(n log n), cuando el pivote divide bien los datos.
+  - **Caso promedio**: O(n log n), es el comportamiento esperado para listas aleatorias.
+  - **Peor caso**: O(n^2), cuando el pivote es el menor o mayor en una lista ya ordenada o casi ordenada.
 
 ### Búsqueda
 
