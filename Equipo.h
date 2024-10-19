@@ -1,108 +1,159 @@
 #ifndef EQUIPO_H
 #define EQUIPO_H
 
-#include <string>
 #include <iostream>
 #include <vector>
+#include <string>
+#include <algorithm>
+#include <fstream>
+#include <sstream>
 
+// Definición de la clase Equipo
 class Equipo {
 private:
     std::string nombre_jugador;
     std::string nombre_equipo;
-    int edad;
-    std::string region;
+    int edad_jugador;
+    std::string nacionalidad;
     int puntaje;
 
 public:
-    // Constructor por defecto
-    Equipo() {}
-
-    // Constructor con parámetros
-    Equipo(const std::string& nom_j, const std::string& nom_e, int ed, const std::string& reg, int punt)
-        : nombre_jugador(nom_j), nombre_equipo(nom_e), edad(ed), region(reg), puntaje(punt) {}
+    // Constructor
+    Equipo(std::string nombre_jugador, std::string nombre_equipo, int edad_jugador, 
+           std::string nacionalidad, int puntaje)
+        : nombre_jugador(nombre_jugador), nombre_equipo(nombre_equipo), 
+          edad_jugador(edad_jugador), nacionalidad(nacionalidad), puntaje(puntaje) {}
 
     // Getters
     std::string get_nombre_jugador() const { return nombre_jugador; }
     std::string get_nombre_equipo() const { return nombre_equipo; }
-    int get_edad() const { return edad; }
-    std::string get_region() const { return region; }
+    int get_edad_jugador() const { return edad_jugador; }
+    std::string get_nacionalidad() const { return nacionalidad; }
     int get_puntaje() const { return puntaje; }
 };
 
-// Función para mostrar los equipos
-void mostrar_equipos(const std::vector<Equipo>& equipos) {
-    for (size_t i = 0; i < equipos.size(); ++i) {
-        std::cout << "Equipo: " << equipos[i].get_nombre_equipo() << std::endl;
-        std::cout << "Participante: " << equipos[i].get_nombre_jugador() << std::endl;
-        std::cout << "Edad: " << equipos[i].get_edad() << std::endl;
-        std::cout << "Región: " << equipos[i].get_region() << std::endl;
-        std::cout << "Puntaje: " << equipos[i].get_puntaje() << std::endl;
-        std::cout << "-----------------------------------------------" << std::endl;
+// Definición de la clase Nodo para el árbol binario
+class Nodo {
+public:
+    Equipo equipo;
+    Nodo* izquierda;
+    Nodo* derecha;
+
+    // Constructor del Nodo
+    Nodo(const Equipo& eq) : equipo(eq), izquierda(NULL), derecha(NULL) {}
+};
+
+// Definición de la clase Arbol
+class Arbol {
+private:
+    Nodo* raiz;
+public:
+
+	//Constructor 	
+	Arbol() : raiz(NULL) {}
+    // Función recursiva para insertar nodos
+    Nodo* insertar_nodo(Nodo* nodo, const Equipo& equipo) {
+        if (nodo == NULL) {
+            return new Nodo(equipo);
+        }
+        if (equipo.get_puntaje() < nodo->equipo.get_puntaje()) {
+            nodo->izquierda = insertar_nodo(nodo->izquierda, equipo);
+        } else {
+            nodo->derecha = insertar_nodo(nodo->derecha, equipo);
+        }
+        return nodo;
     }
-}
 
-// Función auxiliar para realizar el intercambio
-void intercambiar(Equipo& a, Equipo& b) {
-    Equipo temp = a;
-    a = b;
-    b = temp;
-}
-
-// Función para dividir el array y encontrar el pivote
-int particion(std::vector<Equipo>& equipos, int bajo, int alto) {
-    int pivote = equipos[alto].get_puntaje(); // Seleccionamos el último elemento como pivote
-    int i = bajo - 1; // Índice del elemento más pequeño
-
-    for (int j = bajo; j < alto; ++j) {
-        // Si el puntaje del equipo actual es mayor que el del pivote (orden descendente)
-        if (equipos[j].get_puntaje() > pivote) {
-            i++; // Incrementamos el índice
-            intercambiar(equipos[i], equipos[j]); // Intercambiamos los elementos
+    // Función recursiva para imprimir el árbol en orden
+    void imprimir_in_order(Nodo* nodo) const {
+        if (nodo != NULL) {
+            imprimir_in_order(nodo->izquierda);
+            std::cout << "Equipo: " << nodo->equipo.get_nombre_equipo()
+                      << ", Jugador: " << nodo->equipo.get_nombre_jugador()
+                      << ", Puntaje: " << nodo->equipo.get_puntaje() << std::endl;
+            imprimir_in_order(nodo->derecha);
         }
     }
-    intercambiar(equipos[i + 1], equipos[alto]); // Colocamos el pivote en su lugar correcto
+    
+    // Agregar un equipo al árbol
+    void agregar_equipo(const Equipo& equipo) {
+        raiz = insertar_nodo(raiz, equipo);
+    }
+
+    // Imprimir el árbol en orden
+    void imprimir() const {
+        imprimir_in_order(raiz);
+    }
+};
+
+// Función de partición para Quick Sort
+int partition(std::vector<Equipo>& equipos, int low, int high) {
+    int pivot = equipos[high].get_puntaje();  
+    int i = low - 1;  
+
+    for (int j = low; j < high; ++j) {
+        if (equipos[j].get_puntaje() < pivot) {
+            ++i;
+            std::swap(equipos[i], equipos[j]);
+        }
+    }
+    std::swap(equipos[i + 1], equipos[high]);
     return i + 1;
 }
 
-// Función recursiva de Quick Sort
-void quick_sort(std::vector<Equipo>& equipos, int bajo, int alto) {
-    if (bajo < alto) {
-        // Obtenemos el índice del pivote
-        int indice_pivote = particion(equipos, bajo, alto);
+// Implementación de Quick Sort
+void quick_sort(std::vector<Equipo>& equipos, int low, int high) {
+    if (low < high) {
+        int pi = partition(equipos, low, high);  // Índice de partición
 
-        // Ordenamos los elementos antes y después del pivote
-        quick_sort(equipos, bajo, indice_pivote - 1);
-        quick_sort(equipos, indice_pivote + 1, alto);
+        // Ordenar las sublistas
+        quick_sort(equipos, low, pi - 1);
+        quick_sort(equipos, pi + 1, high);
     }
 }
 
-// Función principal para ordenar los equipos
-void ordenar_equipos(std::vector<Equipo>& equipos) {
-    quick_sort(equipos, 0, equipos.size() - 1);
-}
+// Función para realizar búsqueda binaria
+std::string busqueda_binaria(const std::vector<Equipo>& equipos, int puntaje_buscado) {
+    int inicio = 0;
+    int fin = equipos.size() - 1;
 
-// Función de búsqueda binaria 
-void busqueda_binaria_puntaje(const std::vector<Equipo>& equipos, int puntaje_buscado) {
-    int low = 0;
-    int high = equipos.size() - 1;
-    int mid;
-
-    while (low <= high) {
-        mid = (high + low) / 2;
-
-        if (equipos[mid].get_puntaje() == puntaje_buscado) {
-            std::cout << "Jugador encontrado: " << equipos[mid].get_nombre_jugador() << std::endl;
-            return;
-        }
-
-        if (equipos[mid].get_puntaje() > puntaje_buscado) {
-            low = mid + 1;
+    while (inicio <= fin) {
+        int mitad = inicio + (fin - inicio) / 2;
+        if (equipos[mitad].get_puntaje() == puntaje_buscado) {
+            return equipos[mitad].get_nombre_jugador(); 
+        } else if (equipos[mitad].get_puntaje() < puntaje_buscado) {
+            inicio = mitad + 1;
         } else {
-            high = mid - 1;
+            fin = mitad - 1;
         }
     }
-
-    std::cout << "Equipo no encontrado." << std::endl;
+    return "Puntaje no encontrado"; 
 }
 
-#endif // EQUIPO_H
+void cargar_equipos_desde_csv(const std::string& archivo_csv, std::vector<Equipo>& equipos) {
+    std::ifstream archivo(archivo_csv.c_str());
+    std::string linea;
+
+    if (!archivo.is_open()) {
+        std::cerr << "Error al abrir el archivo: " << archivo_csv << std::endl;
+        return;
+    }
+
+    while (std::getline(archivo, linea)) {
+        std::stringstream ss(linea);
+        std::string nombre_jugador, nombre_equipo, nacionalidad;
+        int edad_jugador, puntaje;
+
+        std::getline(ss, nombre_jugador, ',');
+        std::getline(ss, nombre_equipo, ',');
+        ss >> edad_jugador; ss.ignore(); 
+        std::getline(ss, nacionalidad, ',');
+        ss >> puntaje;
+
+        equipos.push_back(Equipo(nombre_jugador, nombre_equipo, edad_jugador, nacionalidad, puntaje));
+    }
+
+    archivo.close();
+}
+
+#endif
