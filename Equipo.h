@@ -78,6 +78,9 @@ public:
     // Agregar un equipo al árbol
     void agregar_equipo(const Equipo& equipo) {
         insertar_nodo(raiz, equipo);
+        std::cout << "Equipo insertado: " << equipo.get_nombre_equipo() 
+              << ", Jugador: " << equipo.get_nombre_jugador() 
+              << ", Puntaje: " << equipo.get_puntaje() << std::endl;
     }
 
     // Imprimir el árbol en orden
