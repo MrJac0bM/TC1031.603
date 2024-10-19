@@ -77,7 +77,7 @@ public:
     
     // Agregar un equipo al árbol
     void agregar_equipo(const Equipo& equipo) {
-        raiz = insertar_nodo(raiz, equipo);
+        insertar_nodo(raiz, equipo);
     }
 
     // Imprimir el árbol en orden
