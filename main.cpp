@@ -29,7 +29,7 @@ void mostrar_equipos_ordenados(vector<Equipo>& equipos) {
 int main() {
     vector<Equipo> equipos;
 
-    std::string archivo_csv = "C:\\Users\\e_spe\\OneDrive\\Escritorio\\Proyecto fornite\\equipos_informacion.csv";
+    std::string archivo_csv = "C:\\Users\\e_spe\\OneDrive\\Escritorio\\Proyecto fornite\\equipos_informacion.csv"; //Cambiar ruta del archivo 
 
     cargar_equipos_desde_csv(archivo_csv, equipos);
 
@@ -56,9 +56,9 @@ int main() {
             case 3:
                 quick_sort(equipos, 0, equipos.size() - 1);
                 for (int i = equipos.size() - 1; i >= 0; --i) {
-                    arbol.agregar_equipo(equipos[i]);
+                    arbol.agregar_equipo(equipos[i]);  
                 }
-                arbol.imprimir();
+                
                 break;
             case 4: {
                 quick_sort(equipos, 0, equipos.size() - 1);
