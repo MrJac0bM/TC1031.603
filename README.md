@@ -79,13 +79,55 @@ Las salidas incluyen:
 #### Hace un análisis de complejidad correcto y completo de todas las estructuras de datos y cada uno de sus usos en el programa.
 - **Argumento**: La estructura del **árbol binario de búsqueda (BST)** permite insertar y organizar los equipos en función de su puntaje con una complejidad promedio de **O(log n)** para operaciones de inserción y búsqueda en un árbol balanceado, aunque puede llegar a **O(n)** en casos extremos. En el caso de **QuickSort**, el rendimiento promedio y mejor es **O(n log n)**, pero puede alcanzar **O(n^2)** en el peor de los casos.
 
-### SICT0302: Toma decisiones
+## SICT0302: Toma de decisiones
 
-#### Selecciona un algoritmo de ordenamiento adecuado al problema y lo usa correctamente.
-- **Argumento**: **QuickSort** fue seleccionado por su alta eficiencia para ordenar equipos por puntaje. Su complejidad promedio de **O(n log n)** lo hace adecuado para manejar listas grandes. Además, permite ordenar de manera eficiente la lista de equipos en diferentes situaciones, aunque se debe tener en cuenta que en su peor caso puede llegar a **O(n^2)** si los datos están muy desbalanceados.
+En este proyecto, tomé decisiones clave al seleccionar los algoritmos y estructuras de datos más adecuadas para organizar y gestionar los equipos en función de su puntaje. A continuación, se explica por qué seleccioné **QuickSort** para el ordenamiento y el **árbol binario de búsqueda (BST)** para la organización y búsqueda de los equipos.
 
-#### Selecciona una estructura de datos adecuada al problema y la usa correctamente.
-- **Argumento**: Decidí utilizar un **árbol binario de búsqueda (BST)** porque necesitaba organizar y visualizar los equipos de manera jerárquica. El BST permite realizar búsquedas y consultas eficientes, con una complejidad de **O(log n)** en su mejor y caso promedio, aunque en el peor de los casos (si está desbalanceado) puede llegar a **O(n)**.
+### Selección de algoritmo de ordenamiento
+
+Para el problema de ordenar los equipos por puntaje, seleccioné el algoritmo **QuickSort**. La razón de esta elección se basa en su alta eficiencia tanto en promedio como en su mejor caso, en comparación con otros algoritmos de ordenamiento como **Bubble Sort** o **Insertion Sort**.
+
+**QuickSort** es un algoritmo de ordenamiento basado en dividir y conquistar. Su funcionamiento consiste en seleccionar un elemento como pivote y luego particionar los elementos en subarreglos, uno con elementos menores al pivote y otro con elementos mayores. Este proceso se repite recursivamente hasta que los subarreglos estén ordenados.
+
+#### Justificación de la elección del algoritmo:
+
+- **Mejor caso (O(n log n))**: El mejor caso ocurre cuando el pivote seleccionado divide los elementos de manera balanceada, es decir, cuando el pivote está cerca del valor medio de la lista. En este caso, cada partición reduce significativamente el número de elementos a procesar, logrando una complejidad de **O(n log n)**, que es más eficiente que otros algoritmos como **MergeSort**, que necesita espacio adicional.
+
+- **Caso promedio (O(n log n))**: En la mayoría de las situaciones, **QuickSort** logra un rendimiento promedio de **O(n log n)**, debido a que los pivotes suelen dividir los datos de manera razonablemente balanceada. Esto lo hace una excelente opción cuando no se tiene conocimiento previo de la disposición de los datos, ya que puede manejar eficientemente conjuntos de datos desordenados o semidesordenados.
+
+- **Peor caso (O(n²))**: El peor caso se da cuando el pivote seleccionado es el menor o el mayor elemento de la lista repetidamente, lo que genera particiones extremadamente desbalanceadas. Este escenario ocurre, por ejemplo, si la lista ya está ordenada o inversamente ordenada. Sin embargo, este comportamiento se puede mitigar mediante la selección aleatoria del pivote o mediante algoritmos optimizados como **QuickSort dual-pivot**.
+
+#### Por qué **QuickSort** es adecuado para este problema:
+
+- **Eficiencia promedio**: El proyecto maneja listas de equipos que pueden variar en tamaño, y **QuickSort** ofrece una solución eficiente, con una complejidad promedio de **O(n log n)** que es suficiente para ordenar listas de varios tamaños sin incurrir en grandes penalizaciones de tiempo.
+
+- **Espacio eficiente**: A diferencia de otros algoritmos como **MergeSort**, que requiere espacio adicional de **O(n)** para los subarreglos, **QuickSort** solo necesita **O(log n)** espacio adicional para las llamadas recursivas. Esto lo hace más adecuado cuando se busca optimizar tanto tiempo como espacio, lo cual es importante en proyectos que pueden manejar grandes volúmenes de datos.
+
+- **Aplicación directa a puntajes**: Como el puntaje de los equipos es un valor numérico fácilmente comparable, **QuickSort** es ideal para ordenar estos datos y permitir luego la búsqueda eficiente.
+
+---
+
+### Selección de la estructura de datos
+
+En cuanto a la estructura de datos, seleccioné un **árbol binario de búsqueda (BST)** para almacenar y organizar los equipos en función de su puntaje. Esta elección se basó en la necesidad de realizar operaciones rápidas de búsqueda, inserción y organización jerárquica de los equipos.
+
+**BST** es una estructura de datos en la que cada nodo tiene como máximo dos hijos, uno a la izquierda y otro a la derecha. Los elementos menores que el nodo se colocan en el subárbol izquierdo, y los mayores se colocan en el subárbol derecho. Esta estructura permite realizar búsquedas, inserciones y eliminaciones de manera eficiente.
+
+#### Justificación de la elección de la estructura de datos:
+
+- **Mejor caso (O(log n))**: En el mejor de los casos, el **BST** está balanceado, es decir, cada nodo tiene aproximadamente el mismo número de nodos a la izquierda y a la derecha. En este escenario, la altura del árbol es logarítmica con respecto al número de nodos, lo que permite realizar búsquedas, inserciones y eliminaciones en **O(log n)**. Esto es altamente eficiente, especialmente cuando se necesita hacer varias operaciones sobre los datos, como es el caso de este proyecto.
+
+- **Caso promedio (O(log n))**: En la mayoría de los casos, el **BST** tiende a estar razonablemente balanceado, lo que significa que las operaciones en el árbol aún se pueden realizar en **O(log n)**. Esto lo hace adecuado para manejar datos de puntaje que no estén ordenados previamente ni presenten patrones específicos de orden.
+
+- **Peor caso (O(n))**: El peor caso ocurre cuando los elementos se insertan de manera que el árbol se convierte en una lista enlazada, es decir, cuando todos los nodos se encuentran en un solo camino (por ejemplo, al insertar datos ya ordenados). En este caso, las operaciones tienen una complejidad de **O(n)**, similar a la de una lista enlazada. Sin embargo, este problema puede ser mitigado utilizando técnicas como la **auto-balanceo** (aunque no se implementó en este proyecto), o reinsertando los elementos en otro orden.
+
+#### Por qué el **BST** es adecuado para este problema:
+
+- **Eficiencia en búsqueda y organización**: Como el proyecto necesita organizar los equipos en función de su puntaje y permitir búsquedas rápidas de jugadores en función de ese puntaje, el **BST** es una opción ideal. A diferencia de una lista o un array, donde las búsquedas podrían ser lineales, el **BST** permite encontrar un equipo con un puntaje dado en **O(log n)** en la mayoría de los casos, lo que reduce significativamente el tiempo de consulta.
+
+- **Flexibilidad para inserciones dinámicas**: El **BST** permite insertar nuevos equipos sin necesidad de reorganizar los datos existentes, lo que lo hace adecuado para un sistema donde se espera que los datos cambien dinámicamente. Las operaciones de inserción también se realizan en **O(log n)** en el mejor y caso promedio, lo que permite una actualización eficiente de los equipos.
+
+- **Comparación con otras estructuras**: Aunque una lista enlazada o un array podrían haber sido utilizados para organizar los equipos, estas estructuras no serían tan eficientes para las búsquedas y actualizaciones dinámicas. Una lista enlazada no permitiría realizar búsquedas rápidas, ya que requeriría recorrer la lista de manera secuencial, resultando en **O(n)** para las búsquedas. Por otro lado, aunque un array podría ofrecer acceso directo a elementos, requeriría reordenar los elementos manualmente después de cada inserción, lo que es menos eficiente que un **BST**.
 
 ### SICT0303: Implementa acciones científicas
 
