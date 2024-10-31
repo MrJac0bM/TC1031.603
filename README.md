@@ -1,47 +1,47 @@
-**Proyecto: Gestión de Equipos de Competencia**
+## Proyecto: Gestión de Equipos de Competencia**
 
 Este proyecto tiene como objetivo gestionar información sobre equipos y jugadores de competencias. Utiliza un **árbol binario de búsqueda (ABB)** para organizar los equipos de acuerdo con sus puntajes de manera eficiente. El sistema permite **visualizar, ordenar y buscar equipos** usando un menú interactivo. Los datos de los equipos se cargan desde un archivo CSV para facilitar la gestión dinámica de información.
 
-**Descripción del Avance 1**
+## Descripción del Avance 1**
 
 En el primer avance, se implementó la clase Equipo, que define los atributos de cada equipo y jugador, como el nombre del equipo, nombre del jugador, edad, nacionalidad y puntaje. También se añadieron funciones para mostrar los equipos y ordenarlos por puntaje utilizando **QuickSort**. La funcionalidad de búsqueda binaria permitía encontrar jugadores en función de su puntaje. El menú inicial incluía opciones para ver los equipos, ordenarlos por puntaje o buscar un equipo específico.
 
-**Implementaciones en el Código (Avance 1)**
+## Implementaciones en el Código (Avance 1)**
 
 1. **Clase Equipo**: Define los atributos del equipo y jugador.
-   1. Archivo: Equipo.h.
-   1. Métodos: get\_nombre\_jugador, get\_nombre\_equipo, get\_edad\_jugador, get\_nacionalidad, get\_puntaje.
+   -  Archivo: Equipo.h.
+   -  Métodos: get\_nombre\_jugador, get\_nombre\_equipo, get\_edad\_jugador, get\_nacionalidad, get\_puntaje.
 1. **Función QuickSort**: Ordena los equipos por puntaje.
-   1. Archivo: Equipo.h.
-   1. Método: quick\_sort.
+   - Archivo: Equipo.h.
+   - Método: quick\_sort.
 1. **Función de Búsqueda Binaria**: Busca un equipo por puntaje en un arreglo ordenado.
-   1. Archivo: Equipo.h.
-   1. Método: busqueda\_binaria.
+   - Archivo: Equipo.h.
+   - Método: busqueda\_binaria.
 
-**Descripción del Avance 2**
+## Descripción del Avance 2**
 
 En el segundo avance, el proyecto evolucionó al **usar un árbol binario de búsqueda (ABB)** como estructura de datos principal. Esto permitió una **organización jerárquica** de los equipos según su puntaje, lo cual facilita tanto la búsqueda de puntajes específicos como el cálculo de estadísticas sobre el árbol (como el puntaje máximo, mínimo y promedio). Además, se implementó la carga de equipos desde un archivo CSV, haciendo que el sistema sea más flexible y dinámico.
 
-**Implementaciones en el Código (Avance 2)**
+## Implementaciones en el Código (Avance 2)**
 
-1. **Clase Nodo**: Define cada nodo del ABB, almacenando un equipo y punteros a nodos hijos.
-   1. Archivo: Equipo.h.
-   1. Estructura: Nodo.
-1. **Clase Arbol (ABB)**: Gestiona la organización jerárquica de los equipos en el árbol, permite insertar, consultar y calcular estadísticas.
-   1. Archivo: Equipo.h.
-   1. Métodos:
-      1. insertar\_nodo: Inserta un equipo en el ABB.
-      1. imprimir\_in\_order: Muestra los equipos en el orden del ABB.
-      1. equipo\_max\_puntaje y equipo\_min\_puntaje: Encuentran el equipo con puntaje máximo y mínimo.
-      1. promedio\_puntajes: Calcula el puntaje promedio.
-      1. contar\_y\_mostrar\_por\_rango: Cuenta y muestra los equipos con puntajes dentro de un rango.
+1. ## Clase Nodo**: Define cada nodo del ABB, almacenando un equipo y punteros a nodos hijos.
+   - Archivo: Equipo.h.
+   - Estructura: Nodo.
+1. ## Clase Arbol (ABB)**: Gestiona la organización jerárquica de los equipos en el árbol, permite insertar, consultar y calcular estadísticas.
+   - Archivo: Equipo.h.
+   1.Métodos:
+      - insertar\_nodo: Inserta un equipo en el ABB.
+      - imprimir\_in\_order: Muestra los equipos en el orden del ABB.
+      - equipo\_max\_puntaje y equipo\_min\_puntaje: Encuentran el equipo con puntaje máximo y mínimo.
+      - promedio\_puntajes: Calcula el puntaje promedio.
+      - contar\_y\_mostrar\_por\_rango: Cuenta y muestra los equipos con puntajes dentro de un rango.
 1. **Función cargar\_equipos\_desde\_csv**: Carga datos de equipos desde un archivo CSV.
    1. Archivo: Equipo.h.
    1. Método: cargar\_equipos\_desde\_csv.
 
-**Cambios Sobre el Primer Avance**
+## Cambios Sobre el Primer Avance**
 
-**1. Carga de Equipos desde CSV**
+**1.##  Carga de Equipos desde CSV**
 
 **Razón del cambio**: Para mejorar la flexibilidad y permitir la carga dinámica de datos, se añadió la función cargar\_equipos\_desde\_csv. Esto permite actualizar los equipos sin modificar el código fuente, facilitando el mantenimiento.
 
@@ -112,7 +112,7 @@ Asegúrate de especificar la ruta correcta en el código donde se asigna archivo
 
 **Desarrollo de Competencias**
 
-**SICT0301: Evalúa los Componentes**
+## SICT0301: Evalúa los Componentes**
 
 El proyecto realiza un análisis de complejidad de los algoritmos y estructuras de datos utilizados:
 
@@ -130,14 +130,14 @@ El proyecto realiza un análisis de complejidad de los algoritmos y estructuras 
 
 **Justificación**: El ABB se elige por su capacidad de manejar búsquedas y actualizaciones dinámicas, lo cual sería menos eficiente en una lista o un array, donde las búsquedas podrían ser lineales. Además, al organizar los equipos por puntaje en un árbol, se garantiza una mejor eficiencia en la consulta de puntajes y en la búsqueda de equipos específicos.
 
-**SICT0302: Toma de Decisiones**
+## SICT0302: Toma de Decisiones**
 
 En este proyecto, seleccioné QuickSort para el ordenamiento y el ABB para la organización y consulta de equipos, considerando varios factores:
 
 1. **QuickSort**: Es un algoritmo de ordenamiento rápido y eficiente con una complejidad promedio de O(n log n). La elección se basa en su eficiencia tanto en el mejor como en el caso promedio, siendo más rápido que otros algoritmos como MergeSort, que necesita espacio adicional. QuickSort es apropiado en este proyecto porque no requiere memoria adicional y se adapta bien a conjuntos de datos de tamaño moderado.
 1. **ABB**: Elegí el ABB porque permite búsquedas y consultas rápidas, especialmente al trabajar con datos dinámicos. Comparado con estructuras como listas enlazadas o arrays, el ABB permite insertar, buscar y organizar datos con una eficiencia superior, al tiempo que facilita la consulta de rangos y estadísticas en tiempo logarítmico en la mayoría de los casos.
 
-**SICT0303: Implementa Acciones Científicas**
+## SICT0303: Implementa Acciones Científicas**
 
 Este proyecto implementa mecanismos de consulta en el ABB y permite la carga de datos desde archivos externos:
 
