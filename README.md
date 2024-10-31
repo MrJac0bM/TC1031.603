@@ -1,138 +1,148 @@
+**Proyecto: Gestión de Equipos de Competencia**
 
-# Proyecto: Gestión de Equipos de Competencia
+Este proyecto tiene como objetivo gestionar información sobre equipos y jugadores de competencias. Utiliza un **árbol binario de búsqueda (ABB)** para organizar los equipos de acuerdo con sus puntajes de manera eficiente. El sistema permite **visualizar, ordenar y buscar equipos** usando un menú interactivo. Los datos de los equipos se cargan desde un archivo CSV para facilitar la gestión dinámica de información.
 
-Este proyecto tiene como objetivo gestionar información sobre equipos y jugadores de competencias. Permite visualizar, ordenar y buscar equipos de manera eficiente utilizando algoritmos de ordenamiento y estructuras de datos. Implementé un menú interactivo que ofrece al usuario opciones para visualizar equipos, ordenarlos por puntaje, buscar jugadores y cargar la información de equipos desde un archivo CSV.
+**Descripción del Avance 1**
 
-## Descripción del avance 1
-En el primer avance, implementé una clase `Equipo` que contiene los atributos del jugador, equipo, edad, nacionalidad y puntaje. Añadí funciones para mostrar los equipos y ordenarlos por puntaje utilizando **QuickSort**. También implementé una función de **búsqueda binaria** para buscar un equipo en función de su puntaje. El menú interactivo ofrece al usuario opciones para visualizar los equipos en el orden ingresado, ordenarlos o buscar un equipo por puntaje.
+En el primer avance, se implementó la clase Equipo, que define los atributos de cada equipo y jugador, como el nombre del equipo, nombre del jugador, edad, nacionalidad y puntaje. También se añadieron funciones para mostrar los equipos y ordenarlos por puntaje utilizando **QuickSort**. La funcionalidad de búsqueda binaria permitía encontrar jugadores en función de su puntaje. El menú inicial incluía opciones para ver los equipos, ordenarlos por puntaje o buscar un equipo específico.
 
-## Descripción del avance 2
-En este segundo avance, mejoré la funcionalidad al implementar un **árbol binario de búsqueda (BST)** para organizar y visualizar los equipos según su puntaje de manera jerárquica. También añadí la funcionalidad de **cargar equipos desde un archivo CSV**, lo que permite que los datos sean gestionados de manera dinámica, en lugar de estar codificados directamente en el programa.
+**Implementaciones en el Código (Avance 1)**
 
-### Cambios sobre el primer avance
-1. **Carga de equipos desde CSV**:
-   - **Razón del cambio**: Para mejorar la flexibilidad del programa y permitir la carga de datos dinámicos, se añadió la funcionalidad de cargar equipos desde un archivo CSV, facilitando la actualización de la información sin necesidad de modificar el código fuente.
-   
-2. **Árbol binario de búsqueda (BST)**:
-   - **Razón del cambio**: Implementar el BST permite una mejor organización de los equipos y una visualización jerárquica basada en el puntaje.
+1. **Clase Equipo**: Define los atributos del equipo y jugador.
+   1. Archivo: Equipo.h.
+   1. Métodos: get\_nombre\_jugador, get\_nombre\_equipo, get\_edad\_jugador, get\_nacionalidad, get\_puntaje.
+1. **Función QuickSort**: Ordena los equipos por puntaje.
+   1. Archivo: Equipo.h.
+   1. Método: quick\_sort.
+1. **Función de Búsqueda Binaria**: Busca un equipo por puntaje en un arreglo ordenado.
+   1. Archivo: Equipo.h.
+   1. Método: busqueda\_binaria.
 
-3. **Optimización del menú**:
-   - **Razón del cambio**: El menú fue mejorado para incluir la opción de insertar equipos en el BST y visualizarlos en el orden del árbol, así como cargar los equipos desde un archivo CSV.
+**Descripción del Avance 2**
 
-## Instrucciones para compilar el avance de proyecto
+En el segundo avance, el proyecto evolucionó al **usar un árbol binario de búsqueda (ABB)** como estructura de datos principal. Esto permitió una **organización jerárquica** de los equipos según su puntaje, lo cual facilita tanto la búsqueda de puntajes específicos como el cálculo de estadísticas sobre el árbol (como el puntaje máximo, mínimo y promedio). Además, se implementó la carga de equipos desde un archivo CSV, haciendo que el sistema sea más flexible y dinámico.
 
-Para compilar el proyecto, asegúrate de estar en el directorio donde están tus archivos y utiliza el siguiente comando en la terminal:
+**Implementaciones en el Código (Avance 2)**
 
-```bash
+1. **Clase Nodo**: Define cada nodo del ABB, almacenando un equipo y punteros a nodos hijos.
+   1. Archivo: Equipo.h.
+   1. Estructura: Nodo.
+1. **Clase Arbol (ABB)**: Gestiona la organización jerárquica de los equipos en el árbol, permite insertar, consultar y calcular estadísticas.
+   1. Archivo: Equipo.h.
+   1. Métodos:
+      1. insertar\_nodo: Inserta un equipo en el ABB.
+      1. imprimir\_in\_order: Muestra los equipos en el orden del ABB.
+      1. equipo\_max\_puntaje y equipo\_min\_puntaje: Encuentran el equipo con puntaje máximo y mínimo.
+      1. promedio\_puntajes: Calcula el puntaje promedio.
+      1. contar\_y\_mostrar\_por\_rango: Cuenta y muestra los equipos con puntajes dentro de un rango.
+1. **Función cargar\_equipos\_desde\_csv**: Carga datos de equipos desde un archivo CSV.
+   1. Archivo: Equipo.h.
+   1. Método: cargar\_equipos\_desde\_csv.
+
+**Cambios Sobre el Primer Avance**
+
+**1. Carga de Equipos desde CSV**
+
+**Razón del cambio**: Para mejorar la flexibilidad y permitir la carga dinámica de datos, se añadió la función cargar\_equipos\_desde\_csv. Esto permite actualizar los equipos sin modificar el código fuente, facilitando el mantenimiento.
+
+**Ubicación en el código**: cargar\_equipos\_desde\_csv se encuentra en Equipo.h. Lee el archivo CSV y añade cada equipo al ABB mediante el método agregar\_equipo de la clase Arbol.
+
+**2. Árbol Binario de Búsqueda (ABB)**
+
+**Razón del cambio**: Implementar el ABB mejora la organización jerárquica de los equipos, permitiendo una estructura que facilita la búsqueda de puntajes específicos y el cálculo de estadísticas en tiempo eficiente.
+
+**Ubicación en el código**: Arbol en Equipo.h, con métodos como insertar\_nodo, equipo\_max\_puntaje, equipo\_min\_puntaje y contar\_y\_mostrar\_por\_rango.
+
+**3. Optimización del Menú**
+
+**Razón del cambio**: Se mejoró el menú para incluir opciones avanzadas de búsqueda y visualización en el ABB, incluyendo la posibilidad de calcular estadísticas directamente desde el árbol y cargar equipos desde un archivo CSV.
+
+**Instrucciones para Compilar el Proyecto**
+
+Asegúrate de estar en el directorio donde están tus archivos y utiliza el siguiente comando en la terminal:
+
+bash
+
+Copiar código
+
 g++ main.cpp -o main
-```
 
-## Instrucciones para ejecutar el avance de proyecto
+**Instrucciones para Ejecutar el Proyecto**
 
-Una vez compilado el proyecto, ejecuta el programa con el siguiente comando:
+Una vez compilado, ejecuta el programa con:
 
-```bash
+bash
+
+Copiar código
+
 ./main
-```
 
-Esto ejecutará tu proyecto usando el archivo compilado con el nombre **main**.
+Esto ejecutará el proyecto usando el archivo compilado main.
 
-### Configuración del archivo CSV
-El programa permite cargar los datos de los equipos desde un archivo CSV. Para que el programa funcione correctamente, debes asegurarte de que la ruta del archivo CSV esté correctamente especificada en el código. Si cambias la ubicación del archivo en tu sistema, solo necesitas actualizar la ruta en el código donde se asigna la variable `archivo_csv`.
+**Configuración del Archivo CSV**
 
-## Descripción de las **entradas del sistema**
-Las entradas del sistema son obtenidas desde un archivo CSV que contiene la información de los equipos, así como las interacciones que el usuario realiza a través del menú interactivo. El archivo CSV debe tener un formato adecuado que incluya la siguiente información por cada equipo: 
-1. Nombre del jugador.
-2. Nombre del equipo.
-3. Edad del jugador.
-4. Nacionalidad del jugador.
-5. Puntaje del jugador.
+El archivo CSV debe ubicarse en el mismo directorio que el ejecutable y debe contener los siguientes campos en cada línea:
 
-El usuario también debe interactuar a través del menú para seleccionar las acciones deseadas como:
-- Imprimir equipos.
-- Ordenar equipos por puntaje.
-- Buscar equipos por puntaje.
+- Nombre del jugador
+- Nombre del equipo
+- Edad del jugador
+- Nacionalidad del jugador
+- Puntaje del jugador
 
-## Descripción de las salidas del avance de proyecto
-Las salidas incluyen:
-1. **Lista de equipos en el orden ingresado**.
-2. **Equipos ordenados por puntaje utilizando QuickSort**.
-3. **Equipos organizados en el orden jerárquico del árbol binario**.
-4. **Resultado de la búsqueda**: Si el puntaje buscado se encuentra, se muestra el nombre del jugador correspondiente; de lo contrario, se informa que el puntaje no fue encontrado.
+Asegúrate de especificar la ruta correcta en el código donde se asigna archivo\_csv.
 
-## Desarrollo de competencias
+**Descripción de las Entradas y Salidas del Sistema**
 
-### SICT0301: Evalúa los componentes
+**Entradas**
 
-#### Hace un análisis de complejidad correcto y completo para los algoritmos de ordenamiento usados en el programa.
+1. **Archivo CSV**: Contiene los datos iniciales de los equipos.
+   1. Ubicación: Configurable en main.cpp.
+1. **Menú Interactivo**: Permite al usuario seleccionar acciones como:
+   1. Imprimir equipos en el orden del ABB.
+   1. Calcular puntaje promedio.
+   1. Contar y mostrar equipos en un rango de puntajes.
 
-- **QuickSort**:
-  - **Mejor caso**: **O(n log n)**, cuando el pivote divide de manera uniforme los subarreglos en cada partición.
-  - **Caso promedio**: **O(n log n)**, lo que sucede en la mayoría de los casos cuando los subarreglos no están extremadamente desbalanceados.
-  - **Peor caso**: **O(n^2)**, ocurre cuando el pivote elegido es el menor o mayor elemento en cada partición, lo que genera particiones muy desbalanceadas (por ejemplo, cuando la lista ya está ordenada en orden ascendente o descendente).
+**Salidas**
 
-- **BST**:
-  - **Mejor caso**: **O(log n)**, cuando el árbol está balanceado.
-  - **Caso promedio**: **O(log n)**, cuando las inserciones en el árbol producen un árbol moderadamente balanceado.
-  - **Peor caso**: **O(n)**, cuando el árbol es muy desbalanceado (similar a una lista enlazada), lo que ocurre cuando los datos se insertan en orden creciente o decreciente.
+1. **Lista de equipos en el orden del ABB**: Muestra los equipos en el orden in-order del ABB.
+1. **Estadísticas**:
+   1. Puntaje máximo y mínimo.
+   1. Puntaje promedio.
+1. **Consulta de rangos**: Muestra equipos con puntajes dentro de un rango especificado.
 
-#### Hace un análisis de complejidad correcto y completo de todas las estructuras de datos y cada uno de sus usos en el programa.
-- **Argumento**: La estructura del **árbol binario de búsqueda (BST)** permite insertar y organizar los equipos en función de su puntaje con una complejidad promedio de **O(log n)** para operaciones de inserción y búsqueda en un árbol balanceado, aunque puede llegar a **O(n)** en casos extremos. En el caso de **QuickSort**, el rendimiento promedio y mejor es **O(n log n)**, pero puede alcanzar **O(n^2)** en el peor de los casos.
+**Desarrollo de Competencias**
 
-## SICT0302: Toma de decisiones
+**SICT0301: Evalúa los Componentes**
 
-En este proyecto, tomé decisiones clave al seleccionar los algoritmos y estructuras de datos más adecuadas para organizar y gestionar los equipos en función de su puntaje. A continuación, se explica por qué seleccioné **QuickSort** para el ordenamiento y el **árbol binario de búsqueda (BST)** para la organización y búsqueda de los equipos.
+El proyecto realiza un análisis de complejidad de los algoritmos y estructuras de datos utilizados:
 
-### Selección de algoritmo de ordenamiento
+**QuickSort**
 
-Para el problema de ordenar los equipos por puntaje, seleccioné el algoritmo **QuickSort**. La razón de esta elección se basa en su alta eficiencia tanto en promedio como en su mejor caso, en comparación con otros algoritmos de ordenamiento como **Bubble Sort** o **Insertion Sort**.
+- **Mejor caso**: O(n log n)
+- **Promedio**: O(n log n)
+- **Peor caso**: O(n²), cuando la lista está en orden ascendente o descendente.
 
-**QuickSort** es un algoritmo de ordenamiento basado en dividir y conquistar. Su funcionamiento consiste en seleccionar un elemento como pivote y luego particionar los elementos en subarreglos, uno con elementos menores al pivote y otro con elementos mayores. Este proceso se repite recursivamente hasta que los subarreglos estén ordenados.
+**ABB**
 
-#### Justificación de la elección del algoritmo:
+- **Mejor caso**: O(log n), cuando el árbol está balanceado.
+- **Caso promedio**: O(log n).
+- **Peor caso**: O(n), cuando el árbol es muy desbalanceado (similar a una lista enlazada).
 
-- **Mejor caso (O(n log n))**: El mejor caso ocurre cuando el pivote seleccionado divide los elementos de manera balanceada, es decir, cuando el pivote está cerca del valor medio de la lista. En este caso, cada partición reduce significativamente el número de elementos a procesar, logrando una complejidad de **O(n log n)**, que es más eficiente que otros algoritmos como **MergeSort**, que necesita espacio adicional.
+**Justificación**: El ABB se elige por su capacidad de manejar búsquedas y actualizaciones dinámicas, lo cual sería menos eficiente en una lista o un array, donde las búsquedas podrían ser lineales. Además, al organizar los equipos por puntaje en un árbol, se garantiza una mejor eficiencia en la consulta de puntajes y en la búsqueda de equipos específicos.
 
-- **Caso promedio (O(n log n))**: En la mayoría de las situaciones, **QuickSort** logra un rendimiento promedio de **O(n log n)**, debido a que los pivotes suelen dividir los datos de manera razonablemente balanceada. Esto lo hace una excelente opción cuando no se tiene conocimiento previo de la disposición de los datos, ya que puede manejar eficientemente conjuntos de datos desordenados o semidesordenados.
+**SICT0302: Toma de Decisiones**
 
-- **Peor caso (O(n²))**: El peor caso se da cuando el pivote seleccionado es el menor o el mayor elemento de la lista repetidamente, lo que genera particiones extremadamente desbalanceadas. Este escenario ocurre, por ejemplo, si la lista ya está ordenada o inversamente ordenada. Sin embargo, este comportamiento se puede mitigar mediante la selección aleatoria del pivote o mediante algoritmos optimizados como **QuickSort dual-pivot**.
+En este proyecto, seleccioné QuickSort para el ordenamiento y el ABB para la organización y consulta de equipos, considerando varios factores:
 
-#### Por qué **QuickSort** es adecuado para este problema:
+1. **QuickSort**: Es un algoritmo de ordenamiento rápido y eficiente con una complejidad promedio de O(n log n). La elección se basa en su eficiencia tanto en el mejor como en el caso promedio, siendo más rápido que otros algoritmos como MergeSort, que necesita espacio adicional. QuickSort es apropiado en este proyecto porque no requiere memoria adicional y se adapta bien a conjuntos de datos de tamaño moderado.
+1. **ABB**: Elegí el ABB porque permite búsquedas y consultas rápidas, especialmente al trabajar con datos dinámicos. Comparado con estructuras como listas enlazadas o arrays, el ABB permite insertar, buscar y organizar datos con una eficiencia superior, al tiempo que facilita la consulta de rangos y estadísticas en tiempo logarítmico en la mayoría de los casos.
 
-- **Eficiencia promedio**: El proyecto maneja listas de equipos que pueden variar en tamaño, y **QuickSort** ofrece una solución eficiente, con una complejidad promedio de **O(n log n)** que es suficiente para ordenar listas de varios tamaños sin incurrir en grandes penalizaciones de tiempo.
+**SICT0303: Implementa Acciones Científicas**
 
-- **Espacio eficiente**: A diferencia de otros algoritmos como **MergeSort**, que requiere espacio adicional de **O(n)** para los subarreglos, **QuickSort** solo necesita **O(log n)** espacio adicional para las llamadas recursivas. Esto lo hace más adecuado cuando se busca optimizar tanto tiempo como espacio, lo cual es importante en proyectos que pueden manejar grandes volúmenes de datos.
+Este proyecto implementa mecanismos de consulta en el ABB y permite la carga de datos desde archivos externos:
 
-- **Aplicación directa a puntajes**: Como el puntaje de los equipos es un valor numérico fácilmente comparable, **QuickSort** es ideal para ordenar estos datos y permitir luego la búsqueda eficiente.
+1. **Consulta en el ABB**: Las funciones equipo\_max\_puntaje, equipo\_min\_puntaje, promedio\_puntajes y contar\_y\_mostrar\_por\_rango permiten consultar el árbol y obtener información detallada sobre los equipos y sus puntajes.
+1. **Carga de datos desde archivo**: La función cargar\_equipos\_desde\_csv permite cargar equipos dinámicamente desde un archivo CSV, mejorando la flexibilidad del programa y facilitando la gestión de datos externos.
 
----
+Con estos cambios, el proyecto no solo ofrece un sistema de gestión de equipos, sino que también proporciona un análisis detallado del rendimiento de los algoritmos y estructuras de datos utilizados.
 
-### Selección de la estructura de datos
-
-En cuanto a la estructura de datos, seleccioné un **árbol binario de búsqueda (BST)** para almacenar y organizar los equipos en función de su puntaje. Esta elección se basó en la necesidad de realizar operaciones rápidas de búsqueda, inserción y organización jerárquica de los equipos.
-
-**BST** es una estructura de datos en la que cada nodo tiene como máximo dos hijos, uno a la izquierda y otro a la derecha. Los elementos menores que el nodo se colocan en el subárbol izquierdo, y los mayores se colocan en el subárbol derecho. Esta estructura permite realizar búsquedas, inserciones y eliminaciones de manera eficiente.
-
-#### Justificación de la elección de la estructura de datos:
-
-- **Mejor caso (O(log n))**: En el mejor de los casos, el **BST** está balanceado, es decir, cada nodo tiene aproximadamente el mismo número de nodos a la izquierda y a la derecha. En este escenario, la altura del árbol es logarítmica con respecto al número de nodos, lo que permite realizar búsquedas, inserciones y eliminaciones en **O(log n)**. Esto es altamente eficiente, especialmente cuando se necesita hacer varias operaciones sobre los datos, como es el caso de este proyecto.
-
-- **Caso promedio (O(log n))**: En la mayoría de los casos, el **BST** tiende a estar razonablemente balanceado, lo que significa que las operaciones en el árbol aún se pueden realizar en **O(log n)**. Esto lo hace adecuado para manejar datos de puntaje que no estén ordenados previamente ni presenten patrones específicos de orden.
-
-- **Peor caso (O(n))**: El peor caso ocurre cuando los elementos se insertan de manera que el árbol se convierte en una lista enlazada, es decir, cuando todos los nodos se encuentran en un solo camino (por ejemplo, al insertar datos ya ordenados). En este caso, las operaciones tienen una complejidad de **O(n)**, similar a la de una lista enlazada. Sin embargo, este problema puede ser mitigado utilizando técnicas como la **auto-balanceo** (aunque no se implementó en este proyecto), o reinsertando los elementos en otro orden.
-
-#### Por qué el **BST** es adecuado para este problema:
-
-- **Eficiencia en búsqueda y organización**: Como el proyecto necesita organizar los equipos en función de su puntaje y permitir búsquedas rápidas de jugadores en función de ese puntaje, el **BST** es una opción ideal. A diferencia de una lista o un array, donde las búsquedas podrían ser lineales, el **BST** permite encontrar un equipo con un puntaje dado en **O(log n)** en la mayoría de los casos, lo que reduce significativamente el tiempo de consulta.
-
-- **Flexibilidad para inserciones dinámicas**: El **BST** permite insertar nuevos equipos sin necesidad de reorganizar los datos existentes, lo que lo hace adecuado para un sistema donde se espera que los datos cambien dinámicamente. Las operaciones de inserción también se realizan en **O(log n)** en el mejor y caso promedio, lo que permite una actualización eficiente de los equipos.
-
-- **Comparación con otras estructuras**: Aunque una lista enlazada o un array podrían haber sido utilizados para organizar los equipos, estas estructuras no serían tan eficientes para las búsquedas y actualizaciones dinámicas. Una lista enlazada no permitiría realizar búsquedas rápidas, ya que requeriría recorrer la lista de manera secuencial, resultando en **O(n)** para las búsquedas. Por otro lado, aunque un array podría ofrecer acceso directo a elementos, requeriría reordenar los elementos manualmente después de cada inserción, lo que es menos eficiente que un **BST**.
-
-### SICT0303: Implementa acciones científicas
-
-#### Implementa mecanismos para consultar información de las estructuras correctos.
-- **Argumento**: Implementé mecanismos eficientes de consulta, utilizando tanto búsqueda binaria en la lista ordenada como el recorrido in-order en el árbol binario. Esto me permitió consultar los equipos de manera rápida y precisa, dependiendo del puntaje o el orden jerárquico.
-
-#### Implementa mecanismos de lectura de archivos para cargar datos a las estructuras de manera correcta.
-- **Argumento**: En este avance, implementé la funcionalidad de cargar datos de equipos desde un archivo **CSV**. Esto permite gestionar los datos de manera dinámica y eficiente. Los equipos se cargan desde un archivo externo, mejorando la flexibilidad del programa.
