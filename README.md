@@ -74,11 +74,10 @@ g++ main.cpp -o main
 
 Una vez compilado, ejecuta el programa con:
 
-bash
-
-Copiar código
-
+```bash
+Copiar código:
 ./main
+```
 
 Esto ejecutará el proyecto usando el archivo compilado main.
 
