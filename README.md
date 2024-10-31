@@ -93,7 +93,6 @@ El archivo CSV debe ubicarse en el mismo directorio que el ejecutable y debe con
 - **Nacionalidad del jugador**
 - **Puntaje del jugador**
 
-> Asegúrate de especificar la ruta correcta en el código donde se asigna `archivo_csv`.
 
 ---
 
