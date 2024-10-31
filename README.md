@@ -79,72 +79,73 @@ Copiar código:
 ./main
 ```
 
-Esto ejecutará el proyecto usando el archivo compilado main.
+Esto ejecutará el proyecto usando el archivo compilado `main`.
 
-**Configuración del Archivo CSV**
+---
+
+## Configuración del Archivo CSV
 
 El archivo CSV debe ubicarse en el mismo directorio que el ejecutable y debe contener los siguientes campos en cada línea:
 
-- Nombre del jugador
-- Nombre del equipo
-- Edad del jugador
-- Nacionalidad del jugador
-- Puntaje del jugador
+- **Nombre del jugador**
+- **Nombre del equipo**
+- **Edad del jugador**
+- **Nacionalidad del jugador**
+- **Puntaje del jugador**
 
-Asegúrate de especificar la ruta correcta en el código donde se asigna archivo\_csv.
+> Asegúrate de especificar la ruta correcta en el código donde se asigna `archivo_csv`.
 
-**Descripción de las Entradas y Salidas del Sistema**
+---
 
-**Entradas**
+## Descripción de las Entradas y Salidas del Sistema
+
+### Entradas
 
 1. **Archivo CSV**: Contiene los datos iniciales de los equipos.
-   1. Ubicación: Configurable en main.cpp.
-1. **Menú Interactivo**: Permite al usuario seleccionar acciones como:
-   1. Imprimir equipos en el orden del ABB.
-   1. Calcular puntaje promedio.
-   1. Contar y mostrar equipos en un rango de puntajes.
+   - **Ubicación**: Configurable en `main.cpp`.
+2. **Menú Interactivo**: Permite al usuario seleccionar acciones como:
+   - Imprimir equipos en el orden del ABB.
+   - Calcular puntaje promedio.
+   - Contar y mostrar equipos en un rango de puntajes.
 
-**Salidas**
+### Salidas
 
 1. **Lista de equipos en el orden del ABB**: Muestra los equipos en el orden in-order del ABB.
-1. **Estadísticas**:
-   1. Puntaje máximo y mínimo.
-   1. Puntaje promedio.
-1. **Consulta de rangos**: Muestra equipos con puntajes dentro de un rango especificado.
+2. **Estadísticas**:
+   - Puntaje máximo y mínimo.
+   - Puntaje promedio.
+3. **Consulta de rangos**: Muestra equipos con puntajes dentro de un rango especificado.
 
-**Desarrollo de Competencias**
+---
 
-## SICT0301: Evalúa los Componentes
+## Desarrollo de Competencias
+
+### SICT0301: Evalúa los Componentes
 
 El proyecto realiza un análisis de complejidad de los algoritmos y estructuras de datos utilizados:
 
-**QuickSort**
+- **QuickSort**  
+  - **Mejor caso**: O(n log n)
+  - **Promedio**: O(n log n)
+  - **Peor caso**: O(n²), cuando la lista está en orden ascendente o descendente.
 
-- **Mejor caso**: O(n log n)
-- **Promedio**: O(n log n)
-- **Peor caso**: O(n²), cuando la lista está en orden ascendente o descendente.
+- **ABB**  
+  - **Mejor caso**: O(log n), cuando el árbol está balanceado.
+  - **Caso promedio**: O(log n).
+  - **Peor caso**: O(n), cuando el árbol es muy desbalanceado (similar a una lista enlazada).
 
-**ABB**
+> **Justificación**: El ABB se elige por su capacidad de manejar búsquedas y actualizaciones dinámicas, lo cual sería menos eficiente en una lista o un array, donde las búsquedas podrían ser lineales. Además, al organizar los equipos por puntaje en un árbol, se garantiza una mejor eficiencia en la consulta de puntajes y en la búsqueda de equipos específicos.
 
-- **Mejor caso**: O(log n), cuando el árbol está balanceado.
-- **Caso promedio**: O(log n).
-- **Peor caso**: O(n), cuando el árbol es muy desbalanceado (similar a una lista enlazada).
+### SICT0302: Toma de Decisiones
 
-**Justificación**: El ABB se elige por su capacidad de manejar búsquedas y actualizaciones dinámicas, lo cual sería menos eficiente en una lista o un array, donde las búsquedas podrían ser lineales. Además, al organizar los equipos por puntaje en un árbol, se garantiza una mejor eficiencia en la consulta de puntajes y en la búsqueda de equipos específicos.
+En este proyecto, se seleccionaron **QuickSort** para el ordenamiento y el **ABB** para la organización y consulta de equipos, considerando varios factores:
 
-## SICT0302: Toma de Decisiones
+1. **QuickSort**: Es un algoritmo de ordenamiento rápido y eficiente con una complejidad promedio de O(n log n). La elección se basa en su eficiencia tanto en el mejor como en el caso promedio, siendo más rápido que otros algoritmos como `MergeSort`, que necesita espacio adicional. QuickSort es apropiado en este proyecto porque no requiere memoria adicional y se adapta bien a conjuntos de datos de tamaño moderado.
+2. **ABB**: Elegí el ABB porque permite búsquedas y consultas rápidas, especialmente al trabajar con datos dinámicos. Comparado con estructuras como listas enlazadas o arrays, el ABB permite insertar, buscar y organizar datos con una eficiencia superior, al tiempo que facilita la consulta de rangos y estadísticas en tiempo logarítmico en la mayoría de los casos.
 
-En este proyecto, seleccioné QuickSort para el ordenamiento y el ABB para la organización y consulta de equipos, considerando varios factores:
-
-1. **QuickSort**: Es un algoritmo de ordenamiento rápido y eficiente con una complejidad promedio de O(n log n). La elección se basa en su eficiencia tanto en el mejor como en el caso promedio, siendo más rápido que otros algoritmos como MergeSort, que necesita espacio adicional. QuickSort es apropiado en este proyecto porque no requiere memoria adicional y se adapta bien a conjuntos de datos de tamaño moderado.
-1. **ABB**: Elegí el ABB porque permite búsquedas y consultas rápidas, especialmente al trabajar con datos dinámicos. Comparado con estructuras como listas enlazadas o arrays, el ABB permite insertar, buscar y organizar datos con una eficiencia superior, al tiempo que facilita la consulta de rangos y estadísticas en tiempo logarítmico en la mayoría de los casos.
-
-## SICT0303: Implementa Acciones Científicas
+### SICT0303: Implementa Acciones Científicas
 
 Este proyecto implementa mecanismos de consulta en el ABB y permite la carga de datos desde archivos externos:
 
-1. **Consulta en el ABB**: Las funciones equipo\_max\_puntaje, equipo\_min\_puntaje, promedio\_puntajes y contar\_y\_mostrar\_por\_rango permiten consultar el árbol y obtener información detallada sobre los equipos y sus puntajes.
-1. **Carga de datos desde archivo**: La función cargar\_equipos\_desde\_csv permite cargar equipos dinámicamente desde un archivo CSV, mejorando la flexibilidad del programa y facilitando la gestión de datos externos.
-
-Con estos cambios, el proyecto no solo ofrece un sistema de gestión de equipos, sino que también proporciona un análisis detallado del rendimiento de los algoritmos y estructuras de datos utilizados.
-
+1. **Consulta en el ABB**: Las funciones `equipo_max_puntaje`, `equipo_min_puntaje`, `promedio_puntajes` y `contar_y_mostrar_por_rango` permiten consultar el árbol y obtener información detallada sobre los equipos y sus puntajes.
+2. **Carga de datos desde archivo**: La función `cargar_equipos_desde_csv` permite cargar equipos dinámicamente desde un archivo CSV, mejorando la flexibilidad del programa y facilitando la gestión de datos externos.
