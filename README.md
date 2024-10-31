@@ -1,72 +1,75 @@
-## Proyecto: Gestión de Equipos de Competencia**
+# Proyecto: Gestión de Equipos de Competencia
 
 Este proyecto tiene como objetivo gestionar información sobre equipos y jugadores de competencias. Utiliza un **árbol binario de búsqueda (ABB)** para organizar los equipos de acuerdo con sus puntajes de manera eficiente. El sistema permite **visualizar, ordenar y buscar equipos** usando un menú interactivo. Los datos de los equipos se cargan desde un archivo CSV para facilitar la gestión dinámica de información.
 
+---
+
 ## Descripción del Avance 1
 
-En el primer avance, se implementó la clase Equipo, que define los atributos de cada equipo y jugador, como el nombre del equipo, nombre del jugador, edad, nacionalidad y puntaje. También se añadieron funciones para mostrar los equipos y ordenarlos por puntaje utilizando **QuickSort**. La funcionalidad de búsqueda binaria permitía encontrar jugadores en función de su puntaje. El menú inicial incluía opciones para ver los equipos, ordenarlos por puntaje o buscar un equipo específico.
+En el primer avance, se implementó la clase `Equipo`, que define los atributos de cada equipo y jugador, como el nombre del equipo, nombre del jugador, edad, nacionalidad y puntaje. También se añadieron funciones para mostrar los equipos y ordenarlos por puntaje utilizando **QuickSort**. La funcionalidad de búsqueda binaria permitía encontrar jugadores en función de su puntaje. El menú inicial incluía opciones para ver los equipos, ordenarlos por puntaje o buscar un equipo específico.
 
-## Implementaciones en el Código (Avance 1)
+### Implementaciones en el Código (Avance 1)
 
-1. **Clase Equipo**: Define los atributos del equipo y jugador.
-   -  Archivo: Equipo.h.
-   -  Métodos: get\_nombre\_jugador, get\_nombre\_equipo, get\_edad\_jugador, get\_nacionalidad, get\_puntaje.
-1. **Función QuickSort**: Ordena los equipos por puntaje.
-   - Archivo: Equipo.h.
-   - Método: quick\_sort.
-1. **Función de Búsqueda Binaria**: Busca un equipo por puntaje en un arreglo ordenado.
-   - Archivo: Equipo.h.
-   - Método: busqueda\_binaria.
+1. **Clase `Equipo`**: Define los atributos del equipo y jugador.
+   - **Archivo**: `Equipo.h`.
+   - **Métodos**: `get_nombre_jugador`, `get_nombre_equipo`, `get_edad_jugador`, `get_nacionalidad`, `get_puntaje`.
+2. **Función `QuickSort`**: Ordena los equipos por puntaje.
+   - **Archivo**: `Equipo.h`.
+   - **Método**: `quick_sort`.
+3. **Función de Búsqueda Binaria**: Busca un equipo por puntaje en un arreglo ordenado.
+   - **Archivo**: `Equipo.h`.
+   - **Método**: `busqueda_binaria`.
+
+---
 
 ## Descripción del Avance 2
 
 En el segundo avance, el proyecto evolucionó al **usar un árbol binario de búsqueda (ABB)** como estructura de datos principal. Esto permitió una **organización jerárquica** de los equipos según su puntaje, lo cual facilita tanto la búsqueda de puntajes específicos como el cálculo de estadísticas sobre el árbol (como el puntaje máximo, mínimo y promedio). Además, se implementó la carga de equipos desde un archivo CSV, haciendo que el sistema sea más flexible y dinámico.
 
-## Implementaciones en el Código (Avance 2)**
+### Implementaciones en el Código (Avance 2)
 
-1. **Clase Nodo**: Define cada nodo del ABB, almacenando un equipo y punteros a nodos hijos.
-   - Archivo: Equipo.h.
-   - Estructura: Nodo.
-1. **Clase Arbol (ABB)**: Gestiona la organización jerárquica de los equipos en el árbol, permite insertar, consultar y calcular estadísticas.
-   - Archivo: Equipo.h.
-   1.Métodos:
-      - insertar\_nodo: Inserta un equipo en el ABB.
-      - imprimir\_in\_order: Muestra los equipos en el orden del ABB.
-      - equipo\_max\_puntaje y equipo\_min\_puntaje: Encuentran el equipo con puntaje máximo y mínimo.
-      - promedio\_puntajes: Calcula el puntaje promedio.
-      - contar\_y\_mostrar\_por\_rango: Cuenta y muestra los equipos con puntajes dentro de un rango.
-1. **Función cargar\_equipos\_desde\_csv**: Carga datos de equipos desde un archivo CSV.
-   1. Archivo: Equipo.h.
-   1. Método: cargar\_equipos\_desde\_csv.
+1. **Clase `Nodo`**: Define cada nodo del ABB, almacenando un equipo y punteros a nodos hijos.
+   - **Archivo**: `Equipo.h`.
+   - **Estructura**: `Nodo`.
+2. **Clase `Arbol` (ABB)**: Gestiona la organización jerárquica de los equipos en el árbol, permite insertar, consultar y calcular estadísticas.
+   - **Archivo**: `Equipo.h`.
+   - **Métodos**:
+      - `insertar_nodo`: Inserta un equipo en el ABB.
+      - `imprimir_in_order`: Muestra los equipos en el orden del ABB.
+      - `equipo_max_puntaje` y `equipo_min_puntaje`: Encuentran el equipo con puntaje máximo y mínimo.
+      - `promedio_puntajes`: Calcula el puntaje promedio.
+      - `contar_y_mostrar_por_rango`: Cuenta y muestra los equipos con puntajes dentro de un rango.
+3. **Función `cargar_equipos_desde_csv`**: Carga datos de equipos desde un archivo CSV.
+   - **Archivo**: `Equipo.h`.
+   - **Método**: `cargar_equipos_desde_csv`.
 
-## Cambios Sobre el Primer Avance**
+---
 
-**1.  Carga de Equipos desde CSV**
+## Cambios Sobre el Primer Avance
 
-**Razón del cambio**: Para mejorar la flexibilidad y permitir la carga dinámica de datos, se añadió la función cargar\_equipos\_desde\_csv. Esto permite actualizar los equipos sin modificar el código fuente, facilitando el mantenimiento.
+### 1. Carga de Equipos desde CSV
 
-**Ubicación en el código**: cargar\_equipos\_desde\_csv se encuentra en Equipo.h. Lee el archivo CSV y añade cada equipo al ABB mediante el método agregar\_equipo de la clase Arbol.
+- **Razón del cambio**: Para mejorar la flexibilidad y permitir la carga dinámica de datos, se añadió la función `cargar_equipos_desde_csv`. Esto permite actualizar los equipos sin modificar el código fuente, facilitando el mantenimiento.
+- **Ubicación en el código**: `cargar_equipos_desde_csv` se encuentra en `Equipo.h`. Lee el archivo CSV y añade cada equipo al ABB mediante el método `agregar_equipo` de la clase `Arbol`.
 
-**2. Árbol Binario de Búsqueda (ABB)**
+### 2. Árbol Binario de Búsqueda (ABB)
 
-**Razón del cambio**: Implementar el ABB mejora la organización jerárquica de los equipos, permitiendo una estructura que facilita la búsqueda de puntajes específicos y el cálculo de estadísticas en tiempo eficiente.
+- **Razón del cambio**: Implementar el ABB mejora la organización jerárquica de los equipos, permitiendo una estructura que facilita la búsqueda de puntajes específicos y el cálculo de estadísticas en tiempo eficiente.
+- **Ubicación en el código**: `Arbol` en `Equipo.h`, con métodos como `insertar_nodo`, `equipo_max_puntaje`, `equipo_min_puntaje` y `contar_y_mostrar_por_rango`.
 
-**Ubicación en el código**: Arbol en Equipo.h, con métodos como insertar\_nodo, equipo\_max\_puntaje, equipo\_min\_puntaje y contar\_y\_mostrar\_por\_rango.
+### 3. Optimización del Menú
 
-**3. Optimización del Menú**
+- **Razón del cambio**: Se mejoró el menú para incluir opciones avanzadas de búsqueda y visualización en el ABB, incluyendo la posibilidad de calcular estadísticas directamente desde el árbol y cargar equipos desde un archivo CSV.
 
-**Razón del cambio**: Se mejoró el menú para incluir opciones avanzadas de búsqueda y visualización en el ABB, incluyendo la posibilidad de calcular estadísticas directamente desde el árbol y cargar equipos desde un archivo CSV.
+---
 
-**Instrucciones para Compilar el Proyecto**
+## Instrucciones para Compilar el Proyecto
 
 Asegúrate de estar en el directorio donde están tus archivos y utiliza el siguiente comando en la terminal:
 
-bash
-
-Copiar código
-
+```bash
 g++ main.cpp -o main
-
+```
 **Instrucciones para Ejecutar el Proyecto**
 
 Una vez compilado, ejecuta el programa con:
