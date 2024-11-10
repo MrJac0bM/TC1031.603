@@ -119,5 +119,6 @@ Para organizar y gestionar de manera eficiente los equipos en función de sus pu
 
 Este proyecto implementa mecanismos de consulta en el ABB y permite la carga de datos desde archivos externos:
 
-1. **Consulta en el ABB**: Las funciones `equipo_max_puntaje`, `equipo_min_puntaje`, `promedio_puntajes` y `contar_y_mostrar_por_rango` permiten consultar el árbol y obtener información detallada sobre los equipos y sus puntajes.
-2. **Carga de datos desde archivo**: La función `cargar_equipos_desde_csv` permite cargar equipos dinámicamente desde un archivo CSV, mejorando la flexibilidad del programa y facilitando la gestión de datos externos.
+Para este proyecto, se implementó un mecanismo que permite guardar la estructura actual del ABB en un archivo de texto `(estructura_arbol.txt)`. Esta función, que guarda el ABB en un formato in-order, facilita la visualización externa del estado de la estructura de datos.
+
+La función `guardar_en_archivo` de la clase Arbol implementa un recorrido in-order que registra cada nodo en el archivo, con una complejidad de `O(n)`. Este mecanismo permite guardar de manera correcta y organizada la información del ABB, haciendo que el proyecto sea más útil y flexible, ya que la estructura de datos puede ser revisada fuera del entorno de ejecución.
